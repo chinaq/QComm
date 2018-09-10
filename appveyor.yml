@@ -12,6 +12,10 @@ before_build:
     choco install opencover.portable --no-progress
 
     choco install codecov --no-progress
+
+    choco install com0com
+
+    & "C:\Program Files (x86)\com0com\setupc.exe" install portname=COM1 portname=COM2
 build:
   verbosity: minimal
 
