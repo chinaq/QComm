@@ -6,17 +6,17 @@ matrix:
 
 
 before_build:
+- sh: mkdir ./com_tmp_dir                                       
+- sh: cd ./com_tmp_dir                                            
+- sh: curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  
+- sh: unzip com0com.7z                                            
+- sh: ./x64/setupc.exe --silent install portname=COM1 portname=COM2
 - ps: >-
     nuget restore -Verbosity quiet
 
     choco install opencover.portable --no-progress
 
     choco install codecov --no-progress
-- sh: mkdir ./com_tmp_dir                                       
-- sh: cd ./com_tmp_dir                                            
-- sh: curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  
-- sh: unzip com0com.7z                                            
-- sh: ./x64/setupc.exe --silent install portname=COM1 portname=COM2
 # - ps: >-
 #     nuget restore
 
