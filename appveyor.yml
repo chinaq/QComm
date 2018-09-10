@@ -9,8 +9,9 @@ before_build:
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
 - ps: mkdir ./com_tmp_dir                                       
 - ps: cd ./com_tmp_dir                                            
-- ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "com0com.7z"  
-- ps: unzip com0com.7z                                            
+- ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
+- ps: ls
+- ps: unzip ./com0com.7z                                            
 - ps: ./x64/setupc.exe --silent install portname=COM1 portname=COM2
 
 - ps: nuget restore -Verbosity quiet
