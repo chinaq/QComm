@@ -13,7 +13,8 @@ before_build:
 - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
 - ps: 7z x ./com0com.7z -y
 # - ps: ls ./x64
-- ps: ./x64/setupc.exe --silent install PortName=COM1 PortName=COM2
+# - ps: ./x64/setupc.exe --silent install PortName=COM1 PortName=COM2
+- ps: ./i386/setupc.exe install PortName=COM1 PortName=COM2
 # - ps: cd ./x64
 # - ps: ls
 # - ps: >-
