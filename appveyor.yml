@@ -15,9 +15,9 @@ before_build:
 
     choco install com0com --no-progress
 
-- ps: sleep 5
-- ps: restart-computer -f
-- ps: sleep 5
+# - ps: sleep 5
+# - ps: restart-computer -f
+# - ps: sleep 5
 
 - ps: >-
     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/com0com.inf" -OutFile "C:\projects\qcomm\com0com.inf"
@@ -26,7 +26,7 @@ before_build:
 
     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/comport.inf" -OutFile "C:\projects\qcomm\comport.inf"
 
-    & "C:\Program Files (x86)\com0com\setupc.exe" install portname=COM1 portname=COM2
+    & "C:\Program Files (x86)\com0com\setupc.exe" --silent install portname=COM1 portname=COM2
 build:
   verbosity: minimal
 
