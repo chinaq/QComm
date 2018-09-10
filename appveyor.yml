@@ -12,6 +12,7 @@ before_build:
 - ps: cd ./com_tmp_dir                                            
 - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
 - ps: 7z e ./com0com.7z -y
+
 - ps: ls ./x64
 # - ps: C:\projects\qcomm\com_tmp_dir\x64\setupc.exe --silent install portname=COM1 portname=COM2
 # - ps: cd ./x64
