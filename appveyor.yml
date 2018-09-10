@@ -17,6 +17,10 @@ before_build:
 
     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/com0com.inf" -OutFile "C:\projects\qcomm\com0com.inf"
 
+    Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/cncport.inf" -OutFile "C:\projects\qcomm\cncport.inf"
+
+    Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/comport.inf" -OutFile "C:\projects\qcomm\comport.inf"
+
     & "C:\Program Files (x86)\com0com\setupc.exe" install portname=COM1 portname=COM2
 build:
   verbosity: minimal
