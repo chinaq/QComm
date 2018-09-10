@@ -7,8 +7,9 @@ matrix:
 
 before_build:
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-- ps: choco install 7zip.install
-- ps: mkdir ./com_tmp_dir && cd ./com_tmp_dir                                            
+- ps: choco install 7zip.install --no-progress
+- ps: mkdir ./com_tmp_dir
+- ps: cd ./com_tmp_dir                                            
 - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
 - ps: 7z e ./com0com.7z                                            
 - ps: ./x64/setupc.exe --silent install portname=COM1 portname=COM2
