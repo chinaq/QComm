@@ -19,14 +19,12 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: {nuget_api_key}
+    secure: OXY8QfF92dsRyE6eiaFMzaYI6YvA/NUsoI+lOPsE2gSB7LGIlvfiHg1Tt0HOTdwU
   on:
     APPVEYOR_REPO_TAG: true
 
 
-environment:
-  nuget_api_key:
-    secure: RBUST2uIq71U0RWwSdKSkE3m+Pw9yRdnU6XfvuA62CqLfcjFdu/Z6g1CSVxKmyw0DHva4e1amnX8Y2pmhrjf5WFPjAiV6oyY/wOZsmP+Kks=
+
 install:
   - ps: iex ((New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/appveyor/secure-file/master/install.ps1'))
   - cmd: appveyor-tools\secure-file -decrypt path-to\encrypted-filename.ext.enc -secret %my_secret%
