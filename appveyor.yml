@@ -6,17 +6,16 @@ matrix:
 
 
 before_build:
-- sh: mkdir ./com_tmp_dir                                       
-- sh: cd ./com_tmp_dir                                            
-- sh: curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  
-- sh: unzip com0com.7z                                            
-- sh: ./x64/setupc.exe --silent install portname=COM1 portname=COM2
-- ps: >-
-    nuget restore -Verbosity quiet
+# intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
+- ps: mkdir ./com_tmp_dir                                       
+- ps: cd ./com_tmp_dir                                            
+- ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "com0com.7z"  
+- ps: unzip com0com.7z                                            
+- ps: ./x64/setupc.exe --silent install portname=COM1 portname=COM2
 
-    choco install opencover.portable --no-progress
-
-    choco install codecov --no-progress
+- ps: nuget restore -Verbosity quiet
+- ps: choco install opencover.portable --no-progress
+- ps: choco install codecov --no-progress
 # - ps: >-
 #     nuget restore
 
