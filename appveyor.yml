@@ -14,7 +14,7 @@ before_build:
 - ps: 7z x ./com0com.7z -y
 # - ps: ls ./x64
 # - ps: ./x64/setupc.exe --silent install PortName=COM1 PortName=COM2
-- ps: ./i386/setupc.exe install PortName=COM1 PortName=COM2
+- ps: ./i386/setupc.exe --silent install PortName=COM1 PortName=COM2 /S
 # - ps: cd ./x64
 # - ps: ls
 # - ps: >-
