@@ -16,9 +16,9 @@ before_build:
 - ps: >- 
     cd ./x64
 
-    ls
+    "ls"
 
-- ps: cmd /c C:\projects\qcomm\com_tmp_dir\x64\setupc.exe --silent install portname=COM1 portname=COM2
+- ps: cmd /c "C:\projects\qcomm\com_tmp_dir\x64\setupc.exe" --silent install portname=COM1 portname=COM2
 # - ps: cd ./x64
 # - ps: ls
 # - ps: >-
