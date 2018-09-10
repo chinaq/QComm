@@ -14,7 +14,7 @@ before_build:
 - ps: 7z e ./com0com.7z -y
 - ps: cd ./x64
 - ps: ls
-- ps: ./setupc.exe --silent install portname=COM1 portname=COM2
+- ps: & "./setupc.exe" --silent install portname=COM1 portname=COM2
 
 - ps: nuget restore -Verbosity quiet
 - ps: choco install opencover.portable --no-progress
