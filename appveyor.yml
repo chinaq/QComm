@@ -6,6 +6,12 @@ matrix:
 
 
 before_build:
+- sh: >-
+    mkdir ./com_tmp_dir                                         && \
+    cd ./com_tmp_dir                                            && \
+    curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  && \
+    unzip com0com.7z                                            && \
+    ./x64/setupc.exe --silent install portname=COM1 portname=COM2
 # - ps: >-
 #     nuget restore
 
@@ -17,18 +23,18 @@ before_build:
 
 
 
-- sh: >-
-    # nuget restore
+# - sh: >-
+#     # nuget restore
 
-    # choco install opencover.portable --no-progress    && \
-    # choco install codecov --no-progress
+#     # choco install opencover.portable --no-progress    && \
+#     # choco install codecov --no-progress
 
-# intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-    mkdir ./com_tmp_dir                                         && \
-    cd ./com_tmp_dir                                            && \
-    curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  && \
-    unzip com0com.7z                                            && \
-    ./x64/setupc.exe --silent install portname=COM1 portname=COM2
+# # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
+#     mkdir ./com_tmp_dir                                         && \
+#     cd ./com_tmp_dir                                            && \
+#     curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  && \
+#     unzip com0com.7z                                            && \
+#     ./x64/setupc.exe --silent install portname=COM1 portname=COM2
 
 # - ps: >-
 #     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/com0com.inf" -OutFile "C:\projects\qcomm\com0com.inf"
