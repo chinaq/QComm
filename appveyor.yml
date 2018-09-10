@@ -15,7 +15,9 @@ before_build:
 
     choco install com0com --no-progress
 
-    # & "C:\Program Files (x86)\com0com\setupc.exe" install portname=COM1 portname=COM2
+    Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/com0com.inf" -OutFile "C:\projects\qcomm\com0com.inf"
+
+    & "C:\Program Files (x86)\com0com\setupc.exe" install portname=COM1 portname=COM2
 build:
   verbosity: minimal
 
