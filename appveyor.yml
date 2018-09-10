@@ -6,12 +6,13 @@ matrix:
 
 
 before_build:
-- sh: >-
+- ps: >-
     nuget restore
 
-    choco install opencover.portable --no-progress    && \
-    choco install codecov --no-progress
+    choco install opencover.portable --no-progress
 
+    choco install codecov --no-progress
+- sh: >-
     mkdir ./com_tmp_dir                                         && \
     cd ./com_tmp_dir                                            && \
     curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  && \
