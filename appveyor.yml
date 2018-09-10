@@ -6,18 +6,24 @@ matrix:
 
 
 before_build:
-- ps: >-
-    nuget restore
+# - ps: >-
+#     nuget restore
 
-    choco install opencover.portable --no-progress
+#     choco install opencover.portable --no-progress
 
-    choco install codecov --no-progress
+#     choco install codecov --no-progress
 
-    choco install com0com --no-progress
+#     choco install com0com --no-progress
 
 
 
 - sh: >-
+    nuget restore
+
+    choco install opencover.portable --no-progress    && \
+    choco install codecov --no-progress
+
+# intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
     cd /tmp/com_tmp_dir                                         && \
     curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  && \
     unzip com0com.7z                                            && \
