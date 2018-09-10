@@ -1,5 +1,13 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+
+
+
+matrix:
+  fast_finish: true
+
+
+
 before_build:
 - ps: >-
     nuget restore
@@ -22,8 +30,3 @@ deploy:
     secure: OXY8QfF92dsRyE6eiaFMzaYI6YvA/NUsoI+lOPsE2gSB7LGIlvfiHg1Tt0HOTdwU
   on:
     APPVEYOR_REPO_TAG: true
-
-
-
-matrix:
-  fast_finish: true
