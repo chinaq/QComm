@@ -8,7 +8,9 @@ matrix:
 before_build:
 - ps: >-
     nuget restore
+
     choco install opencover.portable --no-progress
+
     choco install codecov --no-progress
 build:
   verbosity: minimal
