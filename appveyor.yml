@@ -17,7 +17,7 @@ before_build:
 # - ps: ls ./x64
 # - ps: ./x64/setupc.exe --silent install PortName=COM1 PortName=COM2
 - ps: cd ./x64
-- ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2 /S
+- ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
 # - ps: cd ./x64
 # - ps: ls
 # - ps: >-
