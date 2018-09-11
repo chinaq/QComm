@@ -8,28 +8,19 @@ init:
 
 
 before_build:
-
-# - ps: choco install com0com --no-progress
-# - ps: cd "C:\Program Files (x86)\com0com\"
-# - ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
-
-
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-- ps: choco install autoit --no-progress
+- ps: choco install autoit.commandline --no-progress
 - ps: choco install 7zip.install --no-progress
 - ps: mkdir ./com_tmp_dir
 - ps: cd ./com_tmp_dir                                            
 - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
 - ps: 7z x ./com0com.7z -y
 - ps: cd ./x64
-# - ps: AutoIt3 "C:\projects\qcomm\setupc_by_autoit.au3"
-- ps: C:\projects\qcomm\setupc_by_autoit.au3
-# - ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
+- ps: AutoIt3 "C:\projects\qcomm\setupc_by_autoit.au3"
+# - ps: C:\projects\qcomm\setupc_by_autoit.au3
 
-
-
-
-
+# install test tootls
+- ps: cd "C:\projects\qcomm\"
 - ps: nuget restore -Verbosity quiet
 - ps: choco install opencover.portable --no-progress
 - ps: choco install codecov --no-progress
@@ -37,40 +28,6 @@ before_build:
 
 
 
-
-
-# - ps: >-
-#     nuget restore
-
-#     choco install opencover.portable --no-progress
-
-#     choco install codecov --no-progress
-
-#     choco install com0com --no-progress
-
-
-
-# - sh: >-
-#     # nuget restore
-
-#     # choco install opencover.portable --no-progress    && \
-#     # choco install codecov --no-progress
-
-# # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-#     mkdir ./com_tmp_dir                                         && \
-#     cd ./com_tmp_dir                                            && \
-#     curl -sS http://files.akeo.ie/blog/com0com.7z > com0com.7z  && \
-#     unzip com0com.7z                                            && \
-#     ./x64/setupc.exe --silent install portname=COM1 portname=COM2
-
-# - ps: >-
-#     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/com0com.inf" -OutFile "C:\projects\qcomm\com0com.inf"
-
-#     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/cncport.inf" -OutFile "C:\projects\qcomm\cncport.inf"
-
-#     Invoke-WebRequest "https://raw.githubusercontent.com/Raggles/com0com/master/com0com/driver/com0com/comport.inf" -OutFile "C:\projects\qcomm\comport.inf"
-
-#     & "C:\Program Files (x86)\com0com\setupc.exe" --silent install portname=COM1 portname=COM2
 build:
   verbosity: minimal
 
