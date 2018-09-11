@@ -8,20 +8,22 @@ init:
 
 
 before_build:
+
+- ps: choco install com0com --no-progress
+
+
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-- ps: choco install 7zip.install --no-progress
-- ps: mkdir ./com_tmp_dir
-- ps: cd ./com_tmp_dir                                            
-- ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
-- ps: 7z x ./com0com.7z -y
-# - ps: ls ./x64
-# - ps: ./x64/setupc.exe --silent install PortName=COM1 PortName=COM2
-- ps: cd ./x64
-- ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
+# - ps: choco install 7zip.install --no-progress
+# - ps: mkdir ./com_tmp_dir
+# - ps: cd ./com_tmp_dir                                            
+# - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
+# - ps: 7z x ./com0com.7z -y
 # - ps: cd ./x64
-# - ps: ls
-# - ps: >-
-#     ./setupc.exe --silent install portname=COM1 portname=COM2
+# - ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
+
+
+
+
 
 # - ps: nuget restore -Verbosity quiet
 # - ps: choco install opencover.portable --no-progress
