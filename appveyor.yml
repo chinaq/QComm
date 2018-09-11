@@ -12,22 +12,15 @@ before_build:
 - ps: choco install autoit.commandline --no-progress
 - ps: choco install 7zip.install --no-progress
 - ps: mkdir ./com_tmp_dir
-- ps: cd ./com_tmp_dir                                            
-- ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
+- ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com_tmp_dir/com0com.7z"  
 - ps: 7z x ./com0com.7z -y
-- ps: cd ./x64
+- ps: cd ./com_tmp_dir/x64
 - ps: AutoIt3 "C:\projects\qcomm\setupc_by_autoit.au3"
-# - ps: C:\projects\qcomm\setupc_by_autoit.au3
-
 # install test tootls
 - ps: cd "C:\projects\qcomm\"
 - ps: nuget restore -Verbosity quiet
 - ps: choco install opencover.portable --no-progress
 - ps: choco install codecov --no-progress
-
-
-
-
 build:
   verbosity: minimal
 
@@ -43,7 +36,7 @@ after_test:
 
 
 artifacts:
-- path: '\QComm\bin\Debug\QComm.*.nupkg'
+- path: '.\QComm\bin\Debug\QComm.*.nupkg'
 
 
 
