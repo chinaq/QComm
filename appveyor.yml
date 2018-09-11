@@ -10,6 +10,8 @@ init:
 before_build:
 
 - ps: choco install com0com --no-progress
+- ps: cd "C:\Program Files (x86)\com0com\"
+- ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
 
 
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
