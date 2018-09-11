@@ -15,14 +15,15 @@ before_build:
 
 
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-- ps: choco install autoit
+- ps: choco install autoit --no-progress
 - ps: choco install 7zip.install --no-progress
 - ps: mkdir ./com_tmp_dir
 - ps: cd ./com_tmp_dir                                            
 - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
 - ps: 7z x ./com0com.7z -y
 - ps: cd ./x64
-- ps: Autoit3 "C:\projects\qcomm\setupc_by_autoit.au3"
+# - ps: AutoIt3 "C:\projects\qcomm\setupc_by_autoit.au3"
+- ps: C:\projects\qcomm\setupc_by_autoit.au3
 # - ps: ./setupc.exe --silent install PortName=COM1 PortName=COM2
 
 
