@@ -6,7 +6,7 @@ using QDatas.Core;
 
 namespace QComm
 {
-    public class QComm : IComm
+    public class WrappedComm : IComm
     {
         private ISetup _setup;
         private IClient _cli;
@@ -14,13 +14,13 @@ namespace QComm
         private Action<string> _callback;
         List<CommCmd> cmds;
 
-        private QComm()
+        private WrappedComm()
         {
             _setup = new Mock<ISetup>().Object;
             _convert = new CsvConverter();
         }
 
-        public QComm(IClient cli, Action<string> callback = null): this()
+        public WrappedComm(IClient cli, Action<string> callback = null): this()
         {
             _cli = cli;
             _callback = callback;

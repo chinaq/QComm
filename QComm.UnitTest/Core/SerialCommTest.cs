@@ -14,7 +14,7 @@ namespace QComm.UnitTest
         [TestMethod]
         public void InitByPort() {
             IClient cli = new SerialClient(COM.Port101);
-            IComm serialComm = new QComm(cli);
+            IComm serialComm = new WrappedComm(cli);
             string sets = @"CmdType,Sent
 response,[34 56 78]";
 
@@ -39,7 +39,7 @@ response,[34 56 78]";
         public void Run_Then_Response_N_Rounds()
         {
             IClient cli = new SerialClient(COM.Port101);
-            IComm serialComm = new QComm(cli);
+            IComm serialComm = new WrappedComm(cli);
 
             string sets = @"CmdType,Sent
 response,[12 34 56]
