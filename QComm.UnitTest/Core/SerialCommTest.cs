@@ -12,11 +12,35 @@ namespace QComm.UnitTest
     public class SerialCommTest
     {
         [TestMethod]
-        public void Run()
+        public void InitByPort() {
+            IComm serialComm = new SerialComm(COM.Port101);
+            string sets = @"CmdType,Sent
+response,[34 56 78]";
+
+            serialComm.Setup(sets);
+            serialComm.Open();
+            Task.Run(() => serialComm.Run());
+
+            IClient client = new SerialClient(COM.Port102);
+            client.Open();
+            client.Send(QData.StrHexToBytes("12 34"));
+            byte[] rev0 = client.Rev();
+            client.Close();
+
+            serialComm.Stop();
+            serialComm.Close();
+            Assert.AreEqual("34 56 78", QData.BytesToStrHex(rev0));
+        }
+
+
+
+        [TestMethod]
+        public void Run_Then_Response_N_Rounds()
         {
             ISetup set = new QSetup();
-            IClient revCli = new SerialClient(COM.Port101);
-            IComm serialComm = new SerialComm(set, revCli);
+            // IClient revCli = new SerialClient(COM.Port101);
+            // IComm serialComm = new SerialComm(set, revCli);
+            IComm serialComm = new SerialComm(COM.Port101);
 
             string sets = @"CmdType,Sent
 response,[12 34 56]
@@ -45,25 +69,5 @@ response,[34 56 78]";
         }
 
 
-        [TestMethod]
-        public void InitByPort() {
-            IComm serialComm = new SerialComm(COM.Port101);
-            string sets = @"CmdType,Sent
-response,[34 56 78]";
-
-            serialComm.Setup(sets);
-            serialComm.Open();
-            Task.Run(() => serialComm.Run());
-
-            IClient client = new SerialClient(COM.Port102);
-            client.Open();
-            client.Send(QData.StrHexToBytes("12 34"));
-            byte[] rev0 = client.Rev();
-            client.Close();
-
-            serialComm.Stop();
-            serialComm.Close();
-            Assert.AreEqual("34 56 78", QData.BytesToStrHex(rev0));
-        }
     }
 }

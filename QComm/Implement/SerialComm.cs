@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Moq;
+using QDatas.Core;
 
 namespace QComm
 {
@@ -10,39 +11,51 @@ namespace QComm
         private ISetup _setup;
         private IClient _cli;
         private CsvConverter _convert;
+        private Action<string> _callback;
         List<CommCmd> cmds;
 
-        public SerialComm(string port)
+        private SerialComm(string port)
         {
             _setup = new Mock<ISetup>().Object;
             _cli = new SerialClient(port);
             _convert = new CsvConverter();
         }
 
-
-        public SerialComm(ISetup setup, IClient cli)
+        public SerialComm(string port, Action<string> callback = null): this(port)
         {
-            _setup = setup;
-            _cli = cli;
-            _convert = new CsvConverter();
+            _callback = callback;
+            if (_callback == null)
+                _callback = str => {};
         }
+
+        // public SerialComm(ISetup setup, IClient cli)
+        // {
+        //     _setup = setup;
+        //     _cli = cli;
+        //     _convert = new CsvConverter();
+        // }
 
         public void Close()
         {
             _cli.Close();
+            _callback("close");
         }
 
         public void Open()
         {
             _cli.Open();
+            _callback("open");
         }
 
         public void Run()
         {
+            _callback("run");
             foreach (var cmd in cmds)
             {
                 byte[] rev = _cli.Rev();
+                _callback("rev: " + QData.BytesToStrHex(rev));
                 _cli.Send(cmd.Sent);
+                _callback("send: " + QData.BytesToStrHex(cmd.Sent));
             }
         }
 
@@ -54,6 +67,7 @@ namespace QComm
         public void Stop()
         {
             _cli.Stop();
+            _callback("stop");
         }
     }
 }
