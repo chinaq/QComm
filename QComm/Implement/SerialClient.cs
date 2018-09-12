@@ -17,13 +17,32 @@ namespace QComm
         public int RevDuration { get; set; }
 
 
-
-        public SerialClient(string portName)
-        {
-            port = new SerialPort(portName);
+        private SerialClient() {
             Status = CommStatus.Closed;
             RevDuration = 100;
         }
+
+        public SerialClient(string portName):this()
+        {
+            port = new SerialPort(portName);
+        }
+
+        public SerialClient(string portName, int baudRate):this() {
+            port = new SerialPort(portName, baudRate);
+        }
+
+        public SerialClient(string portName, int baudRate, Parity parity):this() {
+            port = new SerialPort(portName, baudRate, parity);
+        }
+
+        public SerialClient(string portName, int baudRate, Parity parity, int dataBits):this() {
+            port = new SerialPort(portName, baudRate, parity, dataBits);
+        }
+
+        public SerialClient(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits):this() {
+            port = new SerialPort(portName, baudRate, parity, dataBits, stopBits);
+        }
+
 
 
         public void Close()

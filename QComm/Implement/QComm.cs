@@ -6,7 +6,7 @@ using QDatas.Core;
 
 namespace QComm
 {
-    public class SerialComm : IComm
+    public class QComm : IComm
     {
         private ISetup _setup;
         private IClient _cli;
@@ -14,15 +14,15 @@ namespace QComm
         private Action<string> _callback;
         List<CommCmd> cmds;
 
-        private SerialComm(string port)
+        private QComm()
         {
             _setup = new Mock<ISetup>().Object;
-            _cli = new SerialClient(port);
             _convert = new CsvConverter();
         }
 
-        public SerialComm(string port, Action<string> callback = null): this(port)
+        public QComm(IClient cli, Action<string> callback = null): this()
         {
+            _cli = cli;
             _callback = callback;
             if (_callback == null)
                 _callback = str => {};

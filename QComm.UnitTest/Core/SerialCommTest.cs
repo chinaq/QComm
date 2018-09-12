@@ -13,7 +13,8 @@ namespace QComm.UnitTest
     {
         [TestMethod]
         public void InitByPort() {
-            IComm serialComm = new SerialComm(COM.Port101);
+            IClient cli = new SerialClient(COM.Port101);
+            IComm serialComm = new QComm(cli);
             string sets = @"CmdType,Sent
 response,[34 56 78]";
 
@@ -37,10 +38,8 @@ response,[34 56 78]";
         [TestMethod]
         public void Run_Then_Response_N_Rounds()
         {
-            ISetup set = new QSetup();
-            // IClient revCli = new SerialClient(COM.Port101);
-            // IComm serialComm = new SerialComm(set, revCli);
-            IComm serialComm = new SerialComm(COM.Port101);
+            IClient cli = new SerialClient(COM.Port101);
+            IComm serialComm = new QComm(cli);
 
             string sets = @"CmdType,Sent
 response,[12 34 56]
