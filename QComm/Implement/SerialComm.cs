@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Moq;
 
 namespace QComm
 {
-    public class SerialComm : ICommWrapped
+    public class SerialComm : IComm
     {
         private ISetup _setup;
         private IClient _cli;
         private CsvConverter _convert;
         List<CommCmd> cmds;
+
+        public SerialComm(string port)
+        {
+            _setup = new Mock<ISetup>().Object;
+            _cli = new SerialClient(port);
+            _convert = new CsvConverter();
+        }
+
 
         public SerialComm(ISetup setup, IClient cli)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QComm
 {
-    public interface ICommWrapped
+    public interface IComm
     {
         void Run();
         void Setup(string sets);
