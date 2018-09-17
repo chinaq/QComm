@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using QDatas.Core;
+using QData.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,14 +27,14 @@ response,[34 56 78]";
             //        var commands = read.GetRecords<CommCmd>().ToList();
 
             //        Assert.AreEqual(2, commands.Count);
-            //        CollectionAssert.AreEqual(QData.StrHexToBytes("12 34 56"), commands[0].Sent);
+            //        CollectionAssert.AreEqual(Conv.StrHexToBytes("12 34 56"), commands[0].Sent);
             //    }
             //}
 
             var conv = new CsvConverter();
             var commands = conv.GetCommCmds(sets);
             Assert.AreEqual(2, commands.Count);
-            CollectionAssert.AreEqual(QData.StrHexToBytes("12 34 56"), commands[0].Sent);
+            CollectionAssert.AreEqual(Conv.StrHexToBytes("12 34 56"), commands[0].Sent);
 
 
         }

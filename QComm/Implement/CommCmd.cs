@@ -1,5 +1,5 @@
 ﻿using CsvHelper.Configuration;
-using QDatas.Core;
+using QData.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,7 +40,7 @@ namespace QComm
             Regex regex = new Regex(@"\[(([0-9a-fA-F]){2}(\ ([0-9a-fA-F]){2})+)\]");
             Match match = regex.Match(hex);
             Capture capture = match.Groups[1];
-            return QData.StrHexToBytes(capture.Value);
+            return Conv.StrHexToBytes(capture.Value);
         }
     }
 }

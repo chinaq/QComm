@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QComm.UnitTest.Core;
-using QDatas.Core;
+using QData.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,13 +24,13 @@ response,[34 56 78]";
 
             IClient client = new SerialClient(COM.Port102);
             client.Open();
-            client.Send(QData.StrHexToBytes("12 34"));
+            client.Send(Conv.StrHexToBytes("12 34"));
             byte[] rev0 = client.Rev();
             client.Close();
 
             serialComm.Stop();
             serialComm.Close();
-            Assert.AreEqual("34 56 78", QData.BytesToStrHex(rev0));
+            Assert.AreEqual("34 56 78", Conv.BytesToStrHex(rev0));
         }
 
 
@@ -51,19 +51,19 @@ response,[34 56 78]";
 
             IClient client = new SerialClient(COM.Port102);
             client.Open();
-            client.Send(QData.StrHexToBytes("12 34"));
+            client.Send(Conv.StrHexToBytes("12 34"));
             byte[] rev0 = client.Rev();
-            client.Send(QData.StrHexToBytes("45 67"));
+            client.Send(Conv.StrHexToBytes("45 67"));
             byte[] rev1 = client.Rev();
-            client.Send(QData.StrHexToBytes("78 90"));
+            client.Send(Conv.StrHexToBytes("78 90"));
             client.ReadTimeOut = 10;
             byte[] rev2 = client.Rev();
             client.Close();
 
             serialComm.Stop();
             serialComm.Close();
-            Assert.AreEqual("12 34 56", QData.BytesToStrHex(rev0));
-            Assert.AreEqual("34 56 78", QData.BytesToStrHex(rev1));
+            Assert.AreEqual("12 34 56", Conv.BytesToStrHex(rev0));
+            Assert.AreEqual("34 56 78", Conv.BytesToStrHex(rev1));
             Assert.AreEqual(0, rev2.Length);
         }
 

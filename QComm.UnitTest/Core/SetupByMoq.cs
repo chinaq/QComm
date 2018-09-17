@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using QDatas.Core;
+using QData.Core;
 using System.Text.RegularExpressions;
 
 namespace QComm.UnitTest
@@ -29,7 +29,7 @@ namespace QComm.UnitTest
         // public void NoResponse()
         // {
         //     var client = new Mock<IClient>();
-        //     client.Setup(c => c.Rev()).Returns(QData.StrHexToBytes("aa bb"));
+        //     client.Setup(c => c.Rev()).Returns(Conv.StrHexToBytes("aa bb"));
 
         //     IQComm comm = new QComm(client.Object);
         //     var condition = "123";
@@ -48,7 +48,7 @@ namespace QComm.UnitTest
         // public void Response()
         // {
         //     var client = new Mock<IClient>();
-        //     client.Setup(c => c.Rev()).Returns(QData.StrHexToBytes("12 34"));
+        //     client.Setup(c => c.Rev()).Returns(Conv.StrHexToBytes("12 34"));
 
         //     IQComm comm = new QComm(client.Object);
         //     var condition = "12 34";
@@ -59,7 +59,7 @@ namespace QComm.UnitTest
         //     comm.SetupResponse(condition, response, waiting);
         //     comm.Response(duration);
 
-        //     var back = QData.StrHexToBytes("45 67");
+        //     var back = Conv.StrHexToBytes("45 67");
         //     client.Verify(c => c.Send(back));
         // }
 

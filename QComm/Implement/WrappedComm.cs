@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Moq;
-using QDatas.Core;
+using QData.Core;
 
 namespace QComm
 {
@@ -53,9 +53,9 @@ namespace QComm
             foreach (var cmd in cmds)
             {
                 byte[] rev = _cli.Rev();
-                _callback("rev: " + QData.BytesToStrHex(rev));
+                _callback("rev: " + Conv.BytesToStrHex(rev));
                 _cli.Send(cmd.Sent);
-                _callback("send: " + QData.BytesToStrHex(cmd.Sent));
+                _callback("send: " + Conv.BytesToStrHex(cmd.Sent));
             }
         }
 
