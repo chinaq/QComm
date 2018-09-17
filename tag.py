@@ -23,7 +23,7 @@ def main():
         repo = Repo(os.path.abspath("./"))
         repo.git.commit('-am', 'v update')
         new_tag = repo.create_tag("v"+sys.argv[1])
-        repo.remotes.origin.push(new_tag)
+        repo.remotes.origin.push("--follow-tags")
         print("pushed", new_tag)
 
 if __name__ == "__main__":
