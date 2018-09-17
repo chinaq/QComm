@@ -9,8 +9,8 @@ init:
 
 before_build:
 # intall com0com https://pete.akeo.ie/2011/07/com0com-signed-drivers.html
-- ps: choco install autoit.commandline --no-progress
-- ps: choco install 7zip.install --no-progress
+- ps: choco install autoit.commandline --no-progress --y
+- ps: choco install 7zip.install --no-progress --y
 - ps: mkdir ./com_tmp_dir;       cd ./com_tmp_dir
 - ps: Invoke-WebRequest "http://files.akeo.ie/blog/com0com.7z" -OutFile "./com0com.7z"  
 - ps: 7z x ./com0com.7z -y;      cd ./x64
@@ -18,8 +18,8 @@ before_build:
 # install test tootls
 - ps: cd "C:\projects\qcomm\"
 - ps: nuget restore -Verbosity quiet
-- ps: choco install opencover.portable --no-progress
-- ps: choco install codecov --no-progress
+- ps: choco install opencover.portable --no-progress --y
+- ps: choco install codecov --no-progress --y
 build:
   verbosity: minimal
 
